@@ -2,6 +2,8 @@
 
 Discord bot that uses extractive text summarization to summarize text.
 
+Can summarize text given directly by Discord user or scrape user-given websites for text to summarize.
+
 Creates a frequency table using the frequency of words in the text, then assigns a score to each sentence. 
 
 ## Invitation
