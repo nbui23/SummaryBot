@@ -77,13 +77,13 @@ async def on_ready():
 @client.group(name='help')
 async def help(ctx):
     em = discord.Embed(title = "Help", description = "Use !help <command> for instructions", color = ctx.author.color)
-    em.add_field(name = "Commands",value='!summarize, !website')
+    em.add_field(name = "Commands",value='summarize, website')
     await ctx.send(embed = em)
 
 @help.command()
 async def summarize(ctx):
     em = discord.Embed(title = "Summarize", description = "Summarizes text given by user", color = ctx.author.color)
-    em.add_field(name = "Syntax", value = '!summarize <text>')
+    em.add_field(name = "Syntax", value = '!summarize "<text>"')
     await ctx.send(embed = em)
 
 @help.command()
