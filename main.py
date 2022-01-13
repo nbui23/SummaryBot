@@ -14,19 +14,7 @@ nltk.download('stopwords')
 nltk.download('punkt')
 stopwords = set(stopwords.words("english"))
 
-@client.event
-async def on_ready():
-  print('We have logged in as {0.user}'
-  .format(client))
-
-@client.command(name='help')
-async def help(ctx):
-  em = discord.Embed(title = "SummaryBot", description = "Summarizes text using extractive text summarization", color = ctx.author.color)
-  em.add_field(name = "Syntax",value='!summarize "<text>"')
-  await ctx.send(embed = em)
-
-@client.command(name='summarize')
-async def summarize(ctx, text):
+def summarizer(text):
   words = word_tokenize(text) # array of words
   freqTable = dict()
 
@@ -60,6 +48,22 @@ async def summarize(ctx, text):
   for sentence in sentences:
     if (sentence in sentenceValue) and (sentenceValue[sentence] > (1.2 * average)):
         summary += " " + sentence
+  return summary
+
+@client.event
+async def on_ready():
+  print('We have logged in as {0.user}'
+  .format(client))
+
+@client.command(name='help')
+async def help(ctx):
+  em = discord.Embed(title = "SummaryBot", description = "Summarizes text using extractive text summarization", color = ctx.author.color)
+  em.add_field(name = "Syntax",value='!summarize "<text>"')
+  await ctx.send(embed = em)
+
+@client.command(name='summarize')
+async def summarize(ctx, text):
+  summary = summarizer(text)
   if not summary:
     await ctx.send("Input is too short.")
     return
