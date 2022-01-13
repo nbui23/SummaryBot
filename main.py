@@ -77,23 +77,23 @@ async def on_ready():
 @client.group(name='help')
 async def help(ctx):
     em = discord.Embed(title = "Help", description = "Use !help <command> for instructions", color = ctx.author.color)
-    em.add_field(name = "Commands",value='summarize, website')
+    em.add_field(name = "Commands",value='summary, website')
     await ctx.send(embed = em)
 
 @help.command()
-async def summarize(ctx):
-    em = discord.Embed(title = "Summarize", description = "Summarizes text given by user", color = ctx.author.color)
-    em.add_field(name = "Syntax", value = '!summarize "<text>"')
+async def summary(ctx):
+    em = discord.Embed(title = "Summary", description = "Summarizes text given by user", color = ctx.author.color)
+    em.add_field(name = "Syntax", value = '!summary "<text>"')
     await ctx.send(embed = em)
 
 @help.command()
 async def website(ctx):
-    em = discord.Embed(title = "Website", description = "Uses <p> tags to scrape then summarizes the website given by user. Designed for Wikipedia.", color = ctx.author.color)
+    em = discord.Embed(title = "Website", description = "Uses <p> tags to scrape then summarizes the website given by user. Designed for Wikimedia sites.", color = ctx.author.color)
     em.add_field(name = "Syntax", value = '!website <url>')
     await ctx.send(embed = em)
 
-@client.command(name='summarize')
-async def summarize(ctx, text):
+@client.command(name='summary')
+async def summary(ctx, text):
     summary = summarizer(text)
     if len(summary) >= 2000:
         with open("summary.txt","w") as file:
